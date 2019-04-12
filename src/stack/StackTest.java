@@ -23,7 +23,7 @@ class StackTest {
     }
 
     @Test
-    public void pushToFullStack() throws Exception {
+    public void pushToFullStackShouldThrowException() throws Exception {
         stack.push(object);
         stack.push(object);
         Exception exception = assertThrows(Exception.class, () -> stack.push(object));

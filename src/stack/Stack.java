@@ -17,8 +17,7 @@ public class Stack {
     }
 
     /**
-     * @param item i would like to add this to the stack
-     *             add an item to the stack
+     * @param item this will be added this to the stack
      *             Throw an exception when the stack is full and I want to add one more item
      */
     public void push(Object item) throws Exception {
@@ -56,7 +55,7 @@ public class Stack {
         if (!isEmpty()) {
             return stack[topIndex];
         } else {
-            throw new Exception("The stack is empty!");
+            throw new Exception("The stack is empty!i would like to You can't peek!");
         }
     }
 
