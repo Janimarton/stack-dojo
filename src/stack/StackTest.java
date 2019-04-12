@@ -58,4 +58,18 @@ class StackTest {
         assertEquals(object2, stack.peek());
     }
 
+    @Test
+    public void isPopWorkingWellWithEmptyStack() {
+        Exception exception = assertThrows(Exception.class, () -> stack.pop());
+        assertTrue(exception.getMessage().contains("The stack is empty! You can't pop!"));
+    }
+
+    @Test
+    public void isPopWorkingWell() throws Exception {
+        stack.push(object);
+        stack.push(object2);
+        assertEquals(object2, stack.pop());
+        assertEquals(1, stack.getActualSize());
+    }
+
 }

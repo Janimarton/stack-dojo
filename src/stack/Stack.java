@@ -1,5 +1,9 @@
 package stack;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Stack {
 
     private int stackSize;
@@ -32,8 +36,17 @@ public class Stack {
      * remove the last added item
      * Throw an exception when the stack is empty and I want to pop an item
      */
-    public Object pop() {
-        return null;
+    public Object pop() throws Exception {
+        if (isEmpty()) {
+            throw new Exception("The stack is empty! You can't pop!");
+        }
+        Object poppedItem = peek();
+        System.out.println("Removed: " + peek());
+        List<Object> list = new ArrayList<Object>(Arrays.asList(stack));
+        list.remove(peek());
+        stack = list.toArray(stack);
+        topIndex--;
+        return poppedItem;
     }
 
     /**
