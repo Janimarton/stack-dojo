@@ -1,25 +1,29 @@
 package stack;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class StackTest {
 
+    private Stack stack;
+    private java.lang.String object = "object";
+    private String object2 = "object2";
+
+    @BeforeEach
+    void createNewStackWithSize2() {
+        stack = new Stack(2);
+    }
+
     @Test
-    public void pushAddTheNextPlace() throws Exception {
-        Stack stack = new Stack(4);
-        String object = "object";
-        String object2 = "object2";
+    public void pushAndActualSizeWorkingWell() throws Exception {
         stack.push(object);
-        stack.push(object2);
-        assertEquals(stack.getActualSize(), 2);
+        assertEquals(stack.getActualSize(), 1);
     }
 
     @Test
     public void pushToFullStack() throws Exception {
-        Stack stack = new Stack(2);
-        String object = "an item";
         stack.push(object);
         stack.push(object);
         Exception exception = assertThrows(Exception.class, () -> stack.push(object));
@@ -28,8 +32,6 @@ class StackTest {
 
     @Test
     public void isFullWorkingWell() throws Exception {
-        Stack stack = new Stack(2);
-        String object = "an item";
         stack.push(object);
         assertFalse(stack.isFull());
         stack.push(object);
@@ -38,11 +40,22 @@ class StackTest {
 
     @Test
     public void isEmptyWorkingWell() throws Exception {
-        Stack stack = new Stack(2);
-        String object = "an item";
         assertTrue(stack.isEmpty());
         stack.push(object);
         assertFalse(stack.isEmpty());
+    }
+
+    @Test
+    public void isPeekWorkingWellWithEmptyStack() throws Exception {
+        Exception exception = assertThrows(Exception.class, () -> stack.peek());
+        assertTrue(exception.getMessage().contains("The stack is empty!"));
+    }
+
+    @Test
+    public void isPeekWorkingWell() throws Exception {
+        stack.push(object);
+        stack.push(object2);
+        assertEquals(object2, stack.peek());
     }
 
 }

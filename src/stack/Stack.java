@@ -4,12 +4,12 @@ public class Stack {
 
     private int stackSize;
     private Object[] stack;
-    private int topItemIndex;
+    private int topIndex;
 
     public Stack(int size) {
         this.stackSize = size;
         stack = new Object[size];
-        topItemIndex = -1;
+        topIndex = -1;
     }
 
     /**
@@ -23,7 +23,7 @@ public class Stack {
             throw new Exception("Stack is full! can't insert: " + item.toString());
         }
         System.out.println("Inserted: " + item.toString());
-        stack[++topItemIndex] = item;
+        stack[++topIndex] = item;
 
     }
 
@@ -39,23 +39,27 @@ public class Stack {
     /**
      * @return the top item without removing it from the stack
      */
-    public Object peek() {
-        return null;
+    public Object peek() throws Exception {
+        if (!isEmpty()) {
+            return stack[topIndex];
+        } else {
+            throw new Exception("The stack is empty!");
+        }
     }
 
     /**
      * @return with the stack actual size
      */
     public int getActualSize() {
-        return topItemIndex + 1;
+        return topIndex + 1;
     }
 
     public boolean isFull() {
-        return topItemIndex == stackSize - 1;
+        return topIndex == stackSize - 1;
     }
 
-    public boolean isEmpty(){
-        return topItemIndex == -1;
+    public boolean isEmpty() {
+        return topIndex == -1;
     }
 
 
