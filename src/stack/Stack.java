@@ -3,11 +3,13 @@ package stack;
 public class Stack {
 
     private int stackSize;
-    private static int actualSize;
-    private Object[] stack = new Object[stackSize];
+    private Object[] stack;
+    private int topItemIndex;
 
     public Stack(int size) {
         this.stackSize = size;
+        stack = new Object[size];
+        topItemIndex = -1;
     }
 
     /**
@@ -15,7 +17,14 @@ public class Stack {
      *             add an item to the stack
      *             Throw an exception when the stack is full and I want to add one more item
      */
-    public void push(Object item) {
+    public void push(Object item) throws Exception {
+
+        if (isFull()) {
+            throw new Exception("Stack is full! can't insert: " + item.toString());
+        }
+        System.out.println("Inserted: " + item.toString());
+        stack[++topItemIndex] = item;
+
     }
 
     /**
@@ -38,7 +47,11 @@ public class Stack {
      * @return with the stack actual size
      */
     public int getActualSize() {
-        return actualSize;
+        return topItemIndex + 1;
+    }
+
+    public boolean isFull() {
+        return topItemIndex == stackSize - 1;
     }
 
 
