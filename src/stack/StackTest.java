@@ -36,4 +36,13 @@ class StackTest {
         assertTrue(stack.isFull());
     }
 
+    @Test
+    public void isEmptyWorkingWell() throws Exception {
+        Stack stack = new Stack(2);
+        String object = "an item";
+        assertTrue(stack.isEmpty());
+        stack.push(object);
+        assertFalse(stack.isEmpty());
+    }
+
 }

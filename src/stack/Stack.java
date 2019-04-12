@@ -54,5 +54,9 @@ public class Stack {
         return topItemIndex == stackSize - 1;
     }
 
+    public boolean isEmpty(){
+        return topItemIndex == -1;
+    }
+
 
 }
